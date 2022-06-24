@@ -27,11 +27,6 @@ class SakClass:
     def __randomize_sak(self):
         for value in self.__Number_of_Letters.values():
             self.sack.append(value)
-        # self.sack.append(12)
-        # self.sack.append(1)
-        # self.sack.append(2)
-        # self.sack.append(2)
-        # self.sack.append(8)
 
     def get_letters(self):
         return self.__Letters
@@ -157,7 +152,7 @@ class Player:
 
 class Human(Player):
     def __init__(self):
-        Player.__init__(self)
+        super().__init__()
         self.__temp_letters = str()
 
     def play(self, sak):
@@ -221,7 +216,7 @@ class Human(Player):
 
 class Computer(Player):
     def __init__(self, mode):
-        Player.__init__(self)
+        super().__init__()
         self.__temp_letters = str()
         self.__mode = mode
 
@@ -387,7 +382,7 @@ class Game:
                     print("Current mode changed to " + self.__modes[2] + ".")
                 else:
                     print("Current mode is already " + self.__modes[2] + ".")
-            user_input = input("Enter the mode name or type \"EXIT\" to quit the settings menu: ")
+            user_input = input("Enter the mode name or type \"Quit\" or \"q\" to quit the settings menu: ")
 
     def run(self):
         user_input = input("Welcome to the Scrabble game!\n1: Start\n2: Settings\n3: Previous Results\nq: Quit\nType "
@@ -444,7 +439,7 @@ class Game:
     def __show_previous_results(self):
         score_data = self.__load_score_data(self.__score_file_path)
         if score_data == "Empty file":
-            print("There are no previous game records!")
+            print("There are no previous game records!\n--------------------------")
         else:
             counter = 1
             for entry in score_data.values():
